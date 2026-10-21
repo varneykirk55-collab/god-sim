@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, specular_schlick_ggx;
+render_mode blend_mix, cull_disabled, depth_draw_always;
 
 uniform vec4 water_color : source_color = vec4(0.10, 0.42, 0.70, 0.88);
 uniform vec4 highlight : source_color = vec4(0.55, 0.82, 1.0, 1.0);
@@ -14,6 +14,4 @@ void fragment() {
 	ALPHA = water_color.a;
 	ROUGHNESS = 0.14;
 	METALLIC = 0.22;
-	RIM = 0.35;
-	RIM_TINT = 0.4;
 }

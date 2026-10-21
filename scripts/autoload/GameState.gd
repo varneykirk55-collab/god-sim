@@ -175,8 +175,11 @@ func weather_for_biome(b: int) -> String:
 
 
 func _ensure_save_dir() -> void:
-	if not DirAccess.dir_exists_absolute(SAVE_DIR):
-		DirAccess.make_dir_recursive_absolute(SAVE_DIR)
+	var dir := DirAccess.open("user://")
+	if dir == null:
+		return
+	if not dir.dir_exists("saves"):
+		dir.make_dir_recursive("saves")
 
 
 func load_settings() -> void:

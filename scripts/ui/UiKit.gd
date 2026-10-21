@@ -66,7 +66,7 @@ static func tool_button(text: String, tex: Texture2D) -> Button:
 	return b
 
 
-static func label(text: String, size: int = 16, color: Color = INK, align: HorizontalAlignment = HORIZONTAL_ALIGNMENT_LEFT) -> Label:
+static func label(text: String, size: int = 16, color: Color = Color(0.93, 0.94, 0.96, 1.0), align: HorizontalAlignment = HORIZONTAL_ALIGNMENT_LEFT) -> Label:
 	var l := Label.new()
 	l.text = text
 	l.add_theme_font_size_override("font_size", size)

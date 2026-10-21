@@ -45,8 +45,9 @@ func _build_bg() -> void:
 	_mini_island(_preview)
 	var cam := Camera3D.new()
 	cam.position = Vector3(0, 10, 18)
-	cam.look_at(Vector3(0, 1, 0))
+	cam.current = true
 	world.add_child(cam)
+	cam.look_at(Vector3(0, 1, 0), Vector3.UP)
 
 
 func _mini_island(root: Node3D) -> void:

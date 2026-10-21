@@ -46,7 +46,7 @@ static func _continents(terrain: TerrainWorld, rng: RandomNumberGenerator) -> vo
 		for x in range(g):
 			var w := terrain.grid_to_world(x, z)
 			var dist := Vector2(w.x, w.y).length()
-			var fall := clampf(1.0 - smoothstep(R * 0.62, R * 0.96, dist), 0.0, 1.0)
+			var fall := clampf(1.0 - _falloff(R * 0.62, R * 0.96, dist), 0.0, 1.0)
 			var n := noise.get_noise_2d(w.x, w.y)
 			var m := mountain.get_noise_2d(w.x * 0.7, w.y * 0.7)
 			var d := detail.get_noise_2d(w.x, w.y)
@@ -141,6 +141,6 @@ static func _rivers(terrain: TerrainWorld, rng: RandomNumberGenerator) -> void:
 			terrain.brush(pos.x, pos.y, 1.6, 0.45, "lower")
 
 
-static func smoothstep(e0: float, e1: float, x: float) -> float:
+static func _falloff(e0: float, e1: float, x: float) -> float:
 	var t := clampf((x - e0) / max(e1 - e0, 0.0001), 0.0, 1.0)
 	return t * t * (3.0 - 2.0 * t)

@@ -124,4 +124,7 @@ func _apply() -> void:
 	if _shake > 0.0:
 		jitter = Vector3(randf() - 0.5, randf() - 0.5, randf() - 0.5) * _shake
 	_cam.position = offset + jitter
-	_cam.look_at(global_position + Vector3(0, 1.2, 0))
+	if _cam.is_inside_tree():
+		var target := global_position + Vector3(0, 1.2, 0)
+		if not target.is_equal_approx(_cam.global_position):
+			_cam.look_at(target, Vector3.UP)

@@ -1,12 +1,12 @@
 shader_type spatial;
-render_mode specular_schlick_ggx, diffuse_lambert, cull_back;
+render_mode cull_back, diffuse_lambert, specular_schlick_ggx;
 
 varying vec3 wpos;
 varying vec3 wnorm;
 
 void vertex() {
 	wpos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	wnorm = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz);
+	wnorm = normalize(MODEL_NORMAL_MATRIX * NORMAL);
 }
 
 void fragment() {
@@ -24,6 +24,4 @@ void fragment() {
 	}
 	ALBEDO = col;
 	ROUGHNESS = 0.90;
-	SPECULAR = 0.08;
-	NORMAL_MAP_DEPTH = 0.0;
 }
